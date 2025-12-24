@@ -1,35 +1,66 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Ionicons } from '@expo/vector-icons'
+import { Tabs } from 'expo-router'
+import { Text } from 'react-native'
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: '#b23836',
+        tabBarInactiveTintColor: '#94a3b8',
+        tabBarStyle: {
+          backgroundColor: '#ffffff',
+          borderTopColor: '#e2e8f0',
+        },
+        tabBarLabel: ({ children, color }) => (
+          <Text
+            style={{
+              fontSize: 11,
+              color,
+            }}
+          >
+            {children}
+          </Text>
+        ),
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name='home'
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='home-outline' color={color} size={size} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name='contests'
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Contests',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='trophy-outline' color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name='pagentry'
+        options={{
+          title: 'Pagentry',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='ribbon-outline' color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name='reality-show'
+        options={{
+          title: 'Reality Show',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='videocam-outline' color={color} size={size} />
+          ),
         }}
       />
     </Tabs>
-  );
+  )
 }
