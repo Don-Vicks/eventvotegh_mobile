@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "EventHouse",
-    "slug": "eventhouse",
+    "slug": "eventvotegh_mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
