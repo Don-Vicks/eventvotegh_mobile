@@ -22,6 +22,10 @@ const URLS: Record<string, { url: string; title: string }> = {
     url: 'https://eventvotegh.com/contact',
     title: 'Contact Us',
   },
+  tickets: {
+    url: 'https://eventicketgh.com/events?data_from=latest',
+    title: 'Buy Tickets',
+  },
 }
 
 export default function DynamicWebviewScreen() {

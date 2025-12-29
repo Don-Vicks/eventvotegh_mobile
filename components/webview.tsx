@@ -7,22 +7,26 @@ type Props = {
   title: string
 }
 
+import { Stack } from 'expo-router'
+
 export default function EventVoteWebView({ url, title }: Props) {
   const [loading, setLoading] = useState(true)
 
+  const hideHeaderFooterScript = `
+    const style = document.createElement('style');
+    style.innerHTML = 'header, footer, .header, .footer, [role="banner"], [role="contentinfo"], nav { display: none !important; }';
+    document.head.appendChild(style);
+    true;
+  `
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>{title}</Text>
-        <Text style={styles.headerSubtitle}>
-          Content from eventvotegh.com
-        </Text>
-      </View>
+      <Stack.Screen options={{ title: title }} />
 
       {loading && (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size='large' color='#b23836' />
-          <Text style={styles.loadingText}>Loading contest…</Text>
+          <Text style={styles.loadingText}>Loading...</Text>
         </View>
       )}
 
@@ -30,6 +34,7 @@ export default function EventVoteWebView({ url, title }: Props) {
         source={{ uri: url }}
         onLoadEnd={() => setLoading(false)}
         startInLoadingState={false}
+        injectedJavaScript={hideHeaderFooterScript}
       />
     </View>
   )

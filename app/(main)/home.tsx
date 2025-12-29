@@ -67,7 +67,7 @@ export default function TabsHome() {
           <View style={styles.headerTextContainer}>
             <Text style={styles.welcomeText}>Welcome</Text>
             <Text style={styles.questionText}>
-              Which action will you like to perform today?
+              Select Voting Category
             </Text>
           </View>
         </View>
