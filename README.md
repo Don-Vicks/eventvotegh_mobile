@@ -1,50 +1,79 @@
-# Welcome to your Expo app 👋
+# EventHouse
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+EventHouse is the official platform for live voting, ticketing, and event management. This mobile application allows users to vote for their favorite contestants in beauty pageants and reality shows, buy tickets for upcoming events, and (coming soon) file nominations for awards.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Vote for Someone**: Support your favorite contestants in various competitions.
+- **Buy Event Tickets**: Secure your spot at awards nights, live shows, and other events.
+- **File Nomination**: (Coming Soon) Submit nominations for awards and recognition.
+- **Event Management**: Comprehensive tools for event organizers.
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- **Framework**: [Expo](https://expo.dev) (React Native)
+- **Routing**: [Expo Router](https://docs.expo.dev/router/introduction)
+- **Language**: TypeScript
+- **Styling**: StyleSheet (React Native)
 
-   ```bash
-   npx expo start
-   ```
+## Getting Started
 
-In the output, you'll find options to open the app in a
+### Prerequisites
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- [Node.js](https://nodejs.org/) installed.
+- [Expo Go](https://expo.dev/go) app on your mobile device (iOS/Android) or an emulator.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Installation
 
-## Get a fresh project
+1.  Clone the repository:
 
-When you're ready, run:
+    ```bash
+    git clone https://github.com/Don-Vicks/EventHouse.git
+    cd EventHouse
+    ```
+
+2.  Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+### Running the App
+
+Start the development server:
 
 ```bash
-npm run reset-project
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- Scan the QR code with **Expo Go** (Android) or use the Camera app (iOS).
+- Press `a` to open in Android Emulator.
+- Press `i` to open in iOS Simulator.
+- Press `w` to open in Web.
 
-## Learn more
+## Project Structure
 
-To learn more about developing your project with Expo, look at the following resources:
+- `app/`: Contains the main application code and screens (file-based routing).
+- `assets/`: Images and static assets.
+- `components/`: Reusable UI components.
+- `constants/`: App-wide constants and configuration.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Contributing
 
-## Join the community
+Contributions are welcome! Please fork the repository and submit a pull request.
 
-Join our community of developers creating universal apps.
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Author
+
+**Don-Vicks**
+
+- GitHub: [@Don-Vicks](https://github.com/Don-Vicks)
+
+## License
+
+This project is licensed under the MIT License.

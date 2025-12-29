@@ -15,7 +15,7 @@ export default function Index() {
 
         <View style={styles.header}>
           <Text style={styles.brandTitle}>
-            EventVote<Text style={styles.brandAccent}>GH</Text>
+            Event<Text style={styles.brandAccent}>House</Text>
           </Text>
           <Text style={styles.tagline}>
             The official platform for live voting, ticketing, and event management.
@@ -25,7 +25,7 @@ export default function Index() {
         <Text style={styles.sectionHeader}>What would you like to do?</Text>
 
         <View style={styles.cardContainer}>
-          Action 1: Vote
+          {/* Action 1: Vote */}
           <TouchableOpacity
             style={[styles.bigCard, styles.cardPrimary]}
             onPress={() => goTo('/(main)/home')}
@@ -50,6 +50,24 @@ export default function Index() {
             <Text style={[styles.cardTitle, styles.textDark]}>Buy Event Ticket</Text>
             <Text style={[styles.cardDescription, styles.textSlate]}>
               Secure your spot at upcoming events, awards nights, and live shows.
+            </Text>
+          </TouchableOpacity>
+
+          {/* Action 3: File Nomination (Coming Soon) */}
+          <TouchableOpacity
+            style={[styles.bigCard, styles.cardTertiary, { opacity: 0.8 }]}
+            activeOpacity={0.8}
+            onPress={() => { }}
+          >
+            <View style={styles.comingSoonBadge}>
+              <Text style={styles.comingSoonText}>Coming Soon</Text>
+            </View>
+            <View style={[styles.iconContainer, styles.iconContainerTertiary]}>
+              <Ionicons name="document-text-outline" size={32} color="#0f172a" />
+            </View>
+            <Text style={[styles.cardTitle, styles.textDark]}>File Nomination</Text>
+            <Text style={[styles.cardDescription, styles.textSlate]}>
+              Submit your nominations for upcoming awards and recognition events.
             </Text>
           </TouchableOpacity>
         </View>
@@ -165,5 +183,27 @@ const styles = StyleSheet.create({
     color: '#cbd5e1',
     textTransform: 'uppercase',
     letterSpacing: 2,
-  }
+  },
+  cardTertiary: {
+    backgroundColor: '#f1f5f9',
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+  },
+  iconContainerTertiary: {
+    backgroundColor: 'rgba(15, 23, 42, 0.1)',
+  },
+  comingSoonBadge: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    backgroundColor: '#0f172a',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  comingSoonText: {
+    color: 'white',
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
 });

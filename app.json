@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "EventVote",
-    "slug": "eventvotegh_mobile",
+    "name": "EventHouse",
+    "slug": "eventhouse",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "eventvoteghmobile",
+    "scheme": "eventhouse",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.xtreem.eventvotegh"
+      "bundleIdentifier": "com.xtreem.eventhouse"
     },
     "android": {
       "adaptiveIcon": {
