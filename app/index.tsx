@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons'
 import { router } from 'expo-router'
-import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Index() {
@@ -11,7 +11,10 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      <View style={styles.content}>
+      <ScrollView
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+      >
 
         <View style={styles.header}>
           <Text style={styles.brandTitle}>
@@ -74,13 +77,13 @@ export default function Index() {
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            Powered by EventVoteGH
+            Powered by EventHouse
           </Text>
           <Text style={[styles.footerText, { fontSize: 8, marginTop: 4, opacity: 0.6 }]}>
             Built by donvicks.dev
           </Text>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   content: {
-    flex: 1,
+    flexGrow: 1,
     paddingHorizontal: 24,
     paddingTop: 40,
     paddingBottom: 24,
@@ -122,11 +125,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   cardContainer: {
-    flex: 1,
     gap: 16,
+    marginBottom: 24, // Add space before footer
   },
   bigCard: {
-    flex: 1,
+    // Removed flex: 1 to allow natural height
+    width: '100%',
     borderRadius: 24,
     padding: 24,
     justifyContent: 'center',
