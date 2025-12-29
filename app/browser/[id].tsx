@@ -18,6 +18,10 @@ const URLS: Record<string, { url: string; title: string }> = {
     url: 'https://eventvotegh.com/contests', // Placeholder until dedicated Awards URL provided
     title: 'Awards & Nominations',
   },
+  contact: {
+    url: 'https://eventvotegh.com/contact',
+    title: 'Contact Us',
+  },
 }
 
 export default function DynamicWebviewScreen() {

@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons'
 import { router } from 'expo-router'
-import { StatusBar, Text, TouchableOpacity, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Index() {
@@ -9,41 +9,41 @@ export default function Index() {
   }
 
   return (
-    <SafeAreaView className='flex-1 bg-white'>
+    <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      <View className='flex-1 px-6 pt-10 pb-6'>
+      <View style={styles.content}>
 
-        <View className='mb-8'>
-          <Text className='text-3xl font-black text-slate-900 tracking-tight'>
-            EventVote<Text className="text-primary">GH</Text>
+        <View style={styles.header}>
+          <Text style={styles.brandTitle}>
+            EventVote<Text style={styles.brandAccent}>GH</Text>
           </Text>
-          <Text className='mt-2 text-slate-500 font-medium text-base leading-6'>
+          <Text style={styles.tagline}>
             The official platform for live voting, ticketing, and event management.
           </Text>
         </View>
 
         {/* Main Entry Action */}
         <TouchableOpacity
-          className="w-full bg-slate-900 p-4 rounded-2xl mb-6 items-center flex-row justify-center space-x-2 shadow-md active:scale-95 transition-all"
+          style={styles.mainButton}
           onPress={() => goTo('/(tabs)/home')}
         >
           <Ionicons name="apps" size={20} color="white" />
-          <Text className="text-white font-bold text-lg">Go to Dashboard</Text>
+          <Text style={styles.mainButtonText}>Go to Dashboard</Text>
         </TouchableOpacity>
 
-        <View className='space-y-4'>
+        <View style={styles.menuContainer}>
           <TouchableOpacity
-            className='flex-row items-center bg-primary rounded-2xl p-5 shadow-sm active:opacity-90'
+            style={[styles.menuItem, styles.menuItemPrimary]}
             onPress={() => goTo('/(tabs)/contests')}
           >
-            <View className="bg-white/20 p-3 rounded-full mr-4">
+            <View style={[styles.iconContainer, styles.iconContainerPrimary]}>
               <Ionicons name="trophy-outline" size={24} color="white" />
             </View>
-            <View className="flex-1">
-              <Text className='text-lg font-bold text-white'>
+            <View style={styles.menuTextContainer}>
+              <Text style={[styles.menuTitle, styles.textWhite]}>
                 All Contests
               </Text>
-              <Text className='text-yellow-100 text-xs font-medium'>
+              <Text style={styles.menuSubtitleAccent}>
                 View and vote in active contests
               </Text>
             </View>
@@ -51,17 +51,17 @@ export default function Index() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            className='flex-row items-center bg-yellow-50 rounded-2xl p-5 border border-yellow-100 active:bg-yellow-100'
+            style={[styles.menuItem, styles.menuItemSecondary]}
             onPress={() => goTo('/(tabs)/pagentry')}
           >
-            <View className="bg-secondary/20 p-3 rounded-full mr-4">
+            <View style={[styles.iconContainer, styles.iconContainerSecondary]}>
               <Ionicons name="ribbon-outline" size={24} color="#b23836" />
             </View>
-            <View className="flex-1">
-              <Text className='text-lg font-bold text-slate-900'>
+            <View style={styles.menuTextContainer}>
+              <Text style={[styles.menuTitle, styles.textDark]}>
                 Pageantry
               </Text>
-              <Text className='text-slate-500 text-xs font-medium'>
+              <Text style={styles.menuSubtitle}>
                 Vote for your Beauty Queens
               </Text>
             </View>
@@ -69,17 +69,17 @@ export default function Index() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            className='flex-row items-center bg-slate-50 rounded-2xl p-5 border border-slate-100 active:bg-slate-100'
+            style={[styles.menuItem, styles.menuItemTertiary]}
             onPress={() => goTo('/(tabs)/reality-show')}
           >
-            <View className="bg-slate-200 p-3 rounded-full mr-4">
+            <View style={[styles.iconContainer, styles.iconContainerTertiary]}>
               <Ionicons name="videocam-outline" size={24} color="#475569" />
             </View>
-            <View className="flex-1">
-              <Text className='text-lg font-bold text-slate-900'>
+            <View style={styles.menuTextContainer}>
+              <Text style={[styles.menuTitle, styles.textDark]}>
                 Reality Shows
               </Text>
-              <Text className='text-slate-500 text-xs font-medium'>
+              <Text style={styles.menuSubtitle}>
                 Discover live reality events
               </Text>
             </View>
@@ -87,8 +87,8 @@ export default function Index() {
           </TouchableOpacity>
         </View>
 
-        <View className='mt-auto items-center'>
-          <Text className='text-[10px] font-bold text-slate-300 uppercase tracking-widest'>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
             Powered by EventVoteGH
           </Text>
         </View>
@@ -96,3 +96,131 @@ export default function Index() {
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 24, // px-6
+    paddingTop: 40, // pt-10
+    paddingBottom: 24, // pb-6
+  },
+  header: {
+    marginBottom: 32, // mb-8
+  },
+  brandTitle: {
+    fontSize: 30, // text-3xl
+    fontWeight: '900', // font-black
+    color: '#0f172a', // text-slate-900
+    letterSpacing: -0.5, // tracking-tight
+  },
+  brandAccent: {
+    color: '#b23836', // text-primary
+  },
+  tagline: {
+    marginTop: 8, // mt-2
+    color: '#64748b', // text-slate-500
+    fontWeight: '500', // font-medium
+    fontSize: 16, // text-base
+    lineHeight: 24, // leading-6
+  },
+  mainButton: {
+    width: '100%',
+    backgroundColor: '#0f172a', // bg-slate-900
+    padding: 16, // p-4
+    borderRadius: 16, // rounded-2xl
+    marginBottom: 24, // mb-6
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8, // space-x-2 substitute
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  mainButtonText: {
+    color: 'white',
+    fontSize: 18, // text-lg
+    fontWeight: 'bold',
+  },
+  menuContainer: {
+    gap: 16, // space-y-4
+  },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 16, // rounded-2xl
+    padding: 20, // p-5
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  menuItemPrimary: {
+    backgroundColor: '#b23836', // bg-primary
+  },
+  menuItemSecondary: {
+    backgroundColor: '#fefce8', // bg-yellow-50
+    borderWidth: 1,
+    borderColor: '#fef3c7', // border-yellow-100
+  },
+  menuItemTertiary: {
+    backgroundColor: '#f8fafc', // bg-slate-50
+    borderWidth: 1,
+    borderColor: '#f1f5f9', // border-slate-100
+  },
+  iconContainer: {
+    padding: 12, // p-3
+    borderRadius: 9999, // rounded-full
+    marginRight: 16, // mr-4
+  },
+  iconContainerPrimary: {
+    backgroundColor: 'rgba(255, 255, 255, 0.2)', // bg-white/20
+  },
+  iconContainerSecondary: {
+    backgroundColor: 'rgba(255, 215, 0, 0.2)', // bg-secondary/20
+  },
+  iconContainerTertiary: {
+    backgroundColor: '#e2e8f0', // bg-slate-200
+  },
+  menuTextContainer: {
+    flex: 1,
+  },
+  menuTitle: {
+    fontSize: 18, // text-lg
+    fontWeight: 'bold',
+  },
+  textWhite: {
+    color: 'white',
+  },
+  textDark: {
+    color: '#0f172a', // text-slate-900
+  },
+  menuSubtitle: {
+    color: '#64748b', // text-slate-500
+    fontSize: 12, // text-xs
+    fontWeight: '500', // font-medium
+  },
+  menuSubtitleAccent: {
+    color: '#fef3c7', // text-yellow-100
+    fontSize: 12,
+    fontWeight: '500',
+  },
+  footer: {
+    marginTop: 'auto',
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#cbd5e1', // text-slate-300
+    textTransform: 'uppercase',
+    letterSpacing: 2, // tracking-widest
+  }
+});

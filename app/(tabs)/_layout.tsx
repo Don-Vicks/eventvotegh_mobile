@@ -1,6 +1,6 @@
-import { Ionicons } from '@expo/vector-icons'
-import { Tabs } from 'expo-router'
-import { Text } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
+import { Text } from 'react-native';
 
 export default function TabsLayout() {
   return (
@@ -13,7 +13,7 @@ export default function TabsLayout() {
           backgroundColor: '#ffffff',
           borderTopColor: '#e2e8f0',
         },
-        tabBarLabel: ({ children, color }) => (
+        tabBarLabel: ({ children, color }: { children: string; color: string }) => (
           <Text
             style={{
               fontSize: 11,
@@ -29,7 +29,7 @@ export default function TabsLayout() {
         name='home'
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name='home-outline' color={color} size={size} />
           ),
         }}
@@ -38,7 +38,7 @@ export default function TabsLayout() {
         name='contests'
         options={{
           title: 'Contests',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name='trophy-outline' color={color} size={size} />
           ),
         }}
@@ -47,7 +47,7 @@ export default function TabsLayout() {
         name='pagentry'
         options={{
           title: 'Pagentry',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name='ribbon-outline' color={color} size={size} />
           ),
         }}
@@ -56,7 +56,7 @@ export default function TabsLayout() {
         name='reality-show'
         options={{
           title: 'Reality Show',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
             <Ionicons name='videocam-outline' color={color} size={size} />
           ),
         }}

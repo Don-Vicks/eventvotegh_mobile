@@ -1,19 +1,30 @@
-import clsx from 'clsx';
-import { StatusBar, View } from 'react-native';
+import { StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface ScreenProps {
   children: React.ReactNode;
-  className?: string;
+  style?: ViewStyle;
 }
 
-export function Screen({ children, className }: ScreenProps) {
+export function Screen({ children, style }: ScreenProps) {
   return (
-    <SafeAreaView className="flex-1 bg-surface pt-8" edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" />
-      <View className={clsx("flex-1 px-6", className)}>
+      <View style={[styles.container, style]}>
         {children}
       </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#1e293b', // bg-surface
+    paddingTop: 32, // pt-8
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 24, // px-6
+  },
+});

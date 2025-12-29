@@ -1,43 +1,82 @@
-import clsx from 'clsx';
-import { Pressable, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
   variant?: 'primary' | 'secondary' | 'outline';
-  className?: string;
-  textClassName?: string;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
 }
 
 export function Button({
   title,
   onPress,
   variant = 'primary',
-  className,
-  textClassName
+  style,
+  textStyle
 }: ButtonProps) {
-  const baseStyles = "py-4 px-6 rounded-xl flex-row justify-center items-center active:opacity-90 transition-opacity";
-
-  const variants = {
-    primary: "bg-primary shadow-md shadow-primary/30",
-    secondary: "bg-secondary shadow-md shadow-secondary/30",
-    outline: "bg-transparent border-2 border-primary",
-  };
-
-  const textVariants = {
-    primary: "text-white font-bold text-base",
-    secondary: "text-slate-900 font-bold text-base",
-    outline: "text-primary font-bold text-base",
-  };
-
   return (
     <Pressable
       onPress={onPress}
-      className={clsx(baseStyles, variants[variant], className)}
+      style={({ pressed }) => [
+        styles.base,
+        styles[variant],
+        pressed && styles.pressed,
+        style
+      ]}
     >
-      <Text className={clsx(textVariants[variant], textClassName)}>
+      <Text style={[styles.textBase, styles[`text${variant.charAt(0).toUpperCase() + variant.slice(1)}` as keyof typeof styles], textStyle]}>
         {title}
       </Text>
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  base: {
+    paddingVertical: 16, // py-4
+    paddingHorizontal: 24, // px-6
+    borderRadius: 12, // rounded-xl
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pressed: {
+    opacity: 0.9,
+  },
+  primary: {
+    backgroundColor: '#b23836', // bg-primary
+    // shadow-md shadow-primary/30 matches elevation and shadow props roughly
+    shadowColor: '#b23836',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  secondary: {
+    backgroundColor: '#FFD700', // bg-secondary
+    shadowColor: '#FFD700',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  outline: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: '#b23836', // border-primary
+  },
+  textBase: {
+    fontSize: 16, // text-base
+    fontWeight: 'bold', // font-bold
+  },
+  textPrimary: {
+    color: 'white', // text-white
+  },
+  textSecondary: {
+    color: '#0f172a', // text-slate-900
+  },
+  textOutline: {
+    color: '#b23836', // text-primary
+  },
+});

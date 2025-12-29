@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from "expo-router";
 import { useCallback, useState } from "react";
-import { RefreshControl, ScrollView, StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { RefreshControl, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function TabsHome() {
@@ -19,9 +19,11 @@ export default function TabsHome() {
       title: 'Contests',
       subtitle: 'Official Voting',
       icon: 'trophy-outline',
-      color: 'bg-primary',
-      textColor: 'text-white',
+      style: styles.cardPrimary,
+      textColor: styles.textWhite,
+      subTextColor: styles.textYellow,
       iconColor: 'white',
+      iconBg: styles.iconBgWhite,
       route: '/browser/contests',
       fullWidth: true
     },
@@ -29,63 +31,68 @@ export default function TabsHome() {
       title: 'Pageantry',
       subtitle: 'Beauty Queens',
       icon: 'ribbon-outline',
-      color: 'bg-yellow-50',
-      textColor: 'text-slate-900',
+      style: styles.cardSecondary,
+      textColor: styles.textDark,
+      subTextColor: styles.textSlate,
       iconColor: '#b23836',
+      iconBg: styles.iconBgWhiteSolid,
       route: '/browser/pagentry',
-      fullWidth: false
+      fullWidth: true
     },
     {
       title: 'Reality',
       subtitle: 'Live Shows',
       icon: 'videocam-outline',
-      color: 'bg-slate-50',
-      textColor: 'text-slate-900',
+      style: styles.cardTertiary,
+      textColor: styles.textDark,
+      subTextColor: styles.textSlate,
       iconColor: '#b23836',
+      iconBg: styles.iconBgWhiteSolid,
       route: '/browser/reality-show',
-      fullWidth: false
+      fullWidth: true
     }
   ];
 
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <StatusBar barStyle="dark-content" />
       <ScrollView
-        className="flex-1 px-6 pt-4"
+        style={styles.container}
+        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#b23836" />}
       >
         {/* Clean Header */}
-        <View className="flex-row justify-between items-center mb-8">
-          <View className="flex-1 mr-4">
-            <Text className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">Welcome</Text>
-            <Text className="text-2xl font-black text-slate-900 leading-8">
+        <View style={styles.header}>
+          <View style={styles.headerTextContainer}>
+            <Text style={styles.welcomeText}>Welcome</Text>
+            <Text style={styles.questionText}>
               Which action will you like to perform today?
             </Text>
-          </View>
-          <View className="bg-slate-50 p-2 rounded-full border border-slate-100">
-            <Ionicons name="person" size={20} color="#64748b" />
           </View>
         </View>
 
         {/* Dashboard Grid */}
-        <View className="flex-row flex-wrap justify-between gap-y-4 pb-20">
+        <View style={styles.grid}>
           {menuItems.map((item, index) => (
             <TouchableOpacity
               key={index}
-              className={`${item.fullWidth ? 'w-full' : 'w-[48%]'} ${item.color} p-5 rounded-2xl justify-between shadow-sm active:opacity-90 min-h-[140px]`}
+              style={[
+                styles.card,
+                item.style,
+                item.fullWidth ? styles.wFull : styles.wHalf
+              ]}
               onPress={() => router.push(item.route as any)}
-              style={!item.fullWidth ? { borderWidth: 1, borderColor: item.color === 'bg-sky-50' ? '#e0f2fe' : '#f1f5f9' } : {}}
             >
-              <View className={`self-start p-3 rounded-full ${item.iconColor === 'white' ? 'bg-white/20' : 'bg-white'}`}>
+              <View style={[styles.iconContainer, item.iconBg]}>
                 <Ionicons name={item.icon as any} size={24} color={item.iconColor} />
               </View>
 
               <View>
-                <Text className={`${item.textColor === 'text-white' ? 'text-yellow-100' : 'text-slate-500'} font-medium text-xs uppercase tracking-wide`}>
+                <Text style={[styles.cardSubtitle, item.subTextColor]}>
                   {item.subtitle}
                 </Text>
-                <Text className={`${item.textColor} font-black text-xl tracking-tight`}>
+                <Text style={[styles.cardTitle, item.textColor]}>
                   {item.title}
                 </Text>
               </View>
@@ -94,11 +101,11 @@ export default function TabsHome() {
 
           {/* Support / Help Card */}
           <TouchableOpacity
-            className="w-full mt-2 bg-slate-900 p-5 rounded-2xl flex-row items-center justify-center space-x-3 active:opacity-90"
-            onPress={() => router.push('/browser/contests' as any)}
+            style={styles.helpCard}
+            onPress={() => router.push('/browser/contact' as any)}
           >
             <Ionicons name="help-buoy-outline" size={20} color="white" />
-            <Text className="text-white font-bold">Need Help?</Text>
+            <Text style={styles.helpText}>Need Help?</Text>
           </TouchableOpacity>
         </View>
 
@@ -106,3 +113,127 @@ export default function TabsHome() {
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  container: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingHorizontal: 24, // px-6
+    paddingTop: 16, // pt-4
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 32, // mb-8
+  },
+  headerTextContainer: {
+    flex: 1,
+    marginRight: 16,
+  },
+  welcomeText: {
+    fontSize: 14, // text-sm
+    fontWeight: 'bold',
+    color: '#94a3b8', // text-slate-400
+    textTransform: 'uppercase',
+    letterSpacing: 1.5, // tracking-wider
+    marginBottom: 4,
+  },
+  questionText: {
+    fontSize: 24, // text-2xl
+    fontWeight: '900', // font-black
+    color: '#0f172a', // text-slate-900
+    lineHeight: 32,
+  },
+  profileIcon: {
+    backgroundColor: '#f8fafc', // bg-slate-50
+    padding: 8,
+    borderRadius: 9999,
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 16, // gap-y-4 (handled by gap in modern RN or marginTop in older)
+    paddingBottom: 80, // pb-20
+  },
+  card: {
+    padding: 20,
+    borderRadius: 16,
+    justifyContent: 'space-between',
+    minHeight: 140,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  wFull: {
+    width: '100%',
+  },
+  wHalf: {
+    width: '48%',
+  },
+  cardPrimary: {
+    backgroundColor: '#b23836', // bg-primary
+  },
+  cardSecondary: {
+    backgroundColor: '#fefce8', // bg-yellow-50
+    borderWidth: 1,
+    borderColor: '#fef3c7',
+  },
+  cardTertiary: {
+    backgroundColor: '#f8fafc', // bg-slate-50
+    borderWidth: 1,
+    borderColor: '#f1f5f9',
+  },
+  iconContainer: {
+    alignSelf: 'flex-start',
+    padding: 12,
+    borderRadius: 9999,
+  },
+  iconBgWhite: {
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+  },
+  iconBgWhiteSolid: {
+    backgroundColor: 'white',
+  },
+  cardSubtitle: {
+    fontWeight: '500',
+    fontSize: 12, // text-xs
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  cardTitle: {
+    fontWeight: '900',
+    fontSize: 20, // text-xl
+    letterSpacing: -0.5,
+  },
+  textWhite: { color: 'white' },
+  textDark: { color: '#0f172a' },
+  textYellow: { color: '#fef3c7' },
+  textSlate: { color: '#64748b' },
+
+  helpCard: {
+    width: '100%',
+    marginTop: 8,
+    backgroundColor: '#0f172a', // bg-slate-900
+    padding: 20,
+    borderRadius: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+  },
+  helpText: {
+    color: 'white',
+    fontWeight: 'bold',
+  }
+});

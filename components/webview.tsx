@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { WebView } from 'react-native-webview'
 
 type Props = {
@@ -11,18 +11,18 @@ export default function EventVoteWebView({ url, title }: Props) {
   const [loading, setLoading] = useState(true)
 
   return (
-    <View className='flex-1 bg-white'>
-      <View className='pt-12 pb-3 px-4 bg-primary'>
-        <Text className='text-white text-lg font-semibold'>{title}</Text>
-        <Text className='text-yellow-100 text-xs mt-1'>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>{title}</Text>
+        <Text style={styles.headerSubtitle}>
           Content from eventvotegh.com
         </Text>
       </View>
 
       {loading && (
-        <View className='absolute inset-0 z-10 items-center justify-center bg-white/70'>
+        <View style={styles.loadingContainer}>
           <ActivityIndicator size='large' color='#b23836' />
-          <Text className='mt-2 text-slate-600 text-xs'>Loading contest…</Text>
+          <Text style={styles.loadingText}>Loading contest…</Text>
         </View>
       )}
 
@@ -34,3 +34,42 @@ export default function EventVoteWebView({ url, title }: Props) {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  header: {
+    paddingTop: 48, // pt-12
+    paddingBottom: 12, // pb-3
+    paddingHorizontal: 16, // px-4
+    backgroundColor: '#b23836', // bg-primary
+  },
+  headerTitle: {
+    color: 'white',
+    fontSize: 18, // text-lg
+    fontWeight: '600', // font-semibold
+  },
+  headerSubtitle: {
+    color: '#fef3c7', // text-yellow-100
+    fontSize: 12, // text-xs
+    marginTop: 4, // mt-1
+  },
+  loadingContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0, // inset-0
+    zIndex: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)', // bg-white/70
+  },
+  loadingText: {
+    marginTop: 8, // mt-2
+    color: '#475569', // text-slate-600
+    fontSize: 12, // text-xs
+  },
+});
