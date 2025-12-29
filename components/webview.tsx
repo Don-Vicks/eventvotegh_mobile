@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { WebView } from 'react-native-webview'
 
 type Props = {
@@ -8,6 +8,8 @@ type Props = {
 }
 
 import { Stack } from 'expo-router'
+
+import LoadingSkeleton from './LoadingSkeleton'
 
 export default function EventVoteWebView({ url, title }: Props) {
   const [loading, setLoading] = useState(true)
@@ -25,8 +27,7 @@ export default function EventVoteWebView({ url, title }: Props) {
 
       {loading && (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size='large' color='#b23836' />
-          <Text style={styles.loadingText}>Loading...</Text>
+          <LoadingSkeleton />
         </View>
       )}
 
@@ -37,6 +38,7 @@ export default function EventVoteWebView({ url, title }: Props) {
         injectedJavaScript={hideHeaderFooterScript}
         cacheEnabled={false}
         domStorageEnabled={true}
+        pullToRefreshEnabled={true}
       />
     </View>
   )

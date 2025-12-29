@@ -58,6 +58,9 @@ export default function Index() {
           <Text style={styles.footerText}>
             Powered by EventVoteGH
           </Text>
+          <Text style={[styles.footerText, { fontSize: 8, marginTop: 4, opacity: 0.6 }]}>
+            Built by donvicks.dev
+          </Text>
         </View>
       </View>
     </SafeAreaView>
