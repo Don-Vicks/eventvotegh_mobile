@@ -35,6 +35,8 @@ export default function EventVoteWebView({ url, title }: Props) {
         onLoadEnd={() => setLoading(false)}
         startInLoadingState={false}
         injectedJavaScript={hideHeaderFooterScript}
+        cacheEnabled={false}
+        domStorageEnabled={true}
       />
     </View>
   )

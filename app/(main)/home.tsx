@@ -16,7 +16,7 @@ export default function TabsHome() {
 
   const menuItems = [
     {
-      title: 'Contests',
+      title: 'Awards',
       subtitle: 'Official Voting',
       icon: 'trophy-outline',
       style: styles.cardPrimary,
